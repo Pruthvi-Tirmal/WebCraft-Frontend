@@ -17,12 +17,16 @@ import { galleryDataActions } from '../redux/reducers/GalleryData'
 import { ProductsDataActions } from '../redux/reducers/ProductsData'
 import { AboutDataActions } from '../redux/reducers/AboutData'
 import { HomeDataActions } from '../redux/reducers/HomeData'
+import Loader from '../components/Loader'
+import { useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
 const Template = ({ flag = true }) => {
     const navigate = useNavigate();
     // selector
     const URL = useParams();
     // console.log(URL);
     const { id } = URL;
+    const [load, setLoad] = useState(true);
     const dispatch = useDispatch();
     useEffect(() => {
         if (URL['*'] && URL['*'].includes("update/")) {
@@ -52,10 +56,12 @@ const Template = ({ flag = true }) => {
                         // user payment section
                         const resUserPayment = await getPaymentSection({ loggedUser });
                         dispatch(PaymentDataActions.setPaymentData(resUserPayment.data));
+                        setLoad(false);
                     } else {
                         navigate('/site-is-not-present');
                     }
                 } catch (err) {
+                    toast.error("network error, please try after some time.");
                     console.log(err);
                 }
             }
@@ -68,23 +74,25 @@ const Template = ({ flag = true }) => {
     const productsData = useSelector(state => state.Products);
     const galleryData = useSelector(state => state.Gallery);
     const paymentData = useSelector(state => state.Payment);
-    return (
-        <div className='bg-gray-800 overflow-hidden relative w-full min-h-screen grid place-items-center'>
+    return (<>
+        {load && (<Loader />)}
+        {!load && (<div className='bg-gray-800 overflow-hidden relative w-full min-h-screen grid place-items-center'>
             <div className={`${flag && "lg:w-[40%] md:w-[70%] "} w-[90%] rounded-sm shadow-lg flex flex-col p-4 space-y-5 mb-[70px]`}>
                 <HomeSection theme={homeData.theme} founderName={homeData.founderName} companyLogo={homeData.companyLogo} phoneNumber={homeData.phoneNumber} whatsappNumber={homeData.whatsappNumber} url_id={id} nameTitle={homeData.nameTitle} companyName={homeData.companyName} />
                 <AboutSection theme={homeData.theme} aboutInfo={aboutData.aboutInfo} />
                 <ProductSection theme={homeData.theme} productsInfo={productsData.productsInfo} files={productsData.files} whatsappNumber={homeData.whatsappNumber} />
                 <GallerySection theme={homeData.theme} files={galleryData.files} />
                 <PaymentSection theme={homeData.theme} files={paymentData.files} bankName={paymentData.bankName} ifscCode={paymentData.ifscCode} accountHolder={paymentData.accountHolder} mobile={homeData.phoneNumber} accountNumber={paymentData.accountNumber} />
-                <ContactSection theme={homeData.theme} email={homeData.email} />
+                <ContactSection theme={homeData.theme} address={homeData.address} email={homeData.email} />
                 {
                     (homeData?.facebook !== "" || homeData?.instagram !== "" || homeData?.linkedIn !== "") && (<FooterSection theme={homeData.theme} facebook={homeData?.facebook} instagram={homeData?.instagram} linkedin={homeData?.linkedIn} />)
                 }
                 <CompanyFooter theme={homeData.theme} />
             </div>
             {flag && <Navigator theme={homeData.theme} />}
-        </div>
-        // </div>
+        </div>)}
+        <ToastContainer />
+    </>
     )
 }
 

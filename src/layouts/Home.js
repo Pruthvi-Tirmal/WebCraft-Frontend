@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import Prices from '../components/Prices'
+// import Prices from '../components/Prices'
 import CreateBanner from '../components/CreateBanner'
 import Steps from '../components/Steps'
 import Footer from '../components/Footer'
 import FeaturesList from '../components/FeaturesList'
-import About from '../components/About'
+// import About from '../components/About'
 import ContactUs from '../components/ContactUs'
 import FAQ from '../components/FAQ'
 import { Link as ScrollLink } from 'react-scroll'
 import { FaArrowUp } from "react-icons/fa";
-import Loader from '../components/Loader'
+// import Loader from '../components/Loader'
 const Home = () => {
     const [Top, setTop] = useState(false);
     useEffect(() => {
@@ -32,7 +32,7 @@ const Home = () => {
                 <CreateBanner />
                 {/* //! close for temporary purpose */}
                 {/* <Prices /> */}
-                <About />
+                {/* <About /> */}
                 <Steps />
                 <FeaturesList />
                 <FAQ />

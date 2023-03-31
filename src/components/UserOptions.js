@@ -24,7 +24,7 @@ const UserOptions = () => {
     }, [user])
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(`localhost:3000/${url}`);
+        navigator.clipboard.writeText(`${window.location.hostname}/${url}`);
         toast.success("The Link is Copied")
     }
 

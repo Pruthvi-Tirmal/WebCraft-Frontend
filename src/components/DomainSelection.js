@@ -5,6 +5,7 @@ import { auth } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import BackBtn from './BackBtn';
 const DomainSelection = () => {
     //! set the navigate to not come again here once tracker status is true.
 
@@ -83,23 +84,24 @@ const DomainSelection = () => {
     }
     return (
         <div className='w-fit mx-auto mt-10 p-2'>
-            <h1 className='text-4xl text-gray-800 font-bold md:text-left text-center'>URL Selection</h1>
-            <p className='md:text-left text-center text-xl text-gray-800 mt-4 font-medium capitalize'>Type Your Favorite URL Name To see on the URL</p>
+            <BackBtn />
+            <h1 className='text-4xl text-gray-800 font-bold md:text-left text-center'>URN Selection</h1>
+            <p className='md:text-left text-center text-xl text-gray-800 mt-4 font-medium capitalize'>Type Your Favorite URN Name To see on the URL</p>
             <p className='text-gray-500 font-semibold md:text-left text-center'>
                 For Example : www.webcraft.com/example
             </p>
             <p className='text-red-600 font-medium text-lg md:text-left text-center'>!Important Please Don't use Spaces, Special Symbol like @,#,$,%,^,*,etc.</p>
             <div className='flex flex-col  items-center mt-10 gap-2'>
                 {/* <label htmlFor="" className='text-gray-800 self-left text-xl font-semibold'>Domain Name</label> */}
-                <div className='flex gap-3 justify-center mt-3 items-center '>
-                    <input type="text" autoComplete="off" name='domain' value={search} placeholder='Search..' className='ring-2 rounded-lg px-4 py-3 outline-none ring-teal-400 border-none text-xl' onChange={(e) => { setSearch(e.target.value); clearValue(); }} />
-                    <div className=' cursor-pointer hover:scale-95 transition-all ease-linear duration-100 transform  p-3 rounded-full ring-teal-400 ring-4 outline-none' onClick={searchHandle}>
-                        <BsSearch className='text-2xl text-teal-500' />
+                <div className='flex gap-3 w-full justify-center mt-3 items-center '>
+                    <input type="text" autoComplete="off" name='domain' value={search} placeholder='Search..' className='w-full ring-2 rounded-lg px-4 py-3 outline-none ring-blue-400 border-none text-xl' onChange={(e) => { setSearch(e.target.value); clearValue(); }} />
+                    <div className='cursor-pointer hover:scale-95 transition-all ease-linear duration-100 transform p-3 rounded-full ring-blue-400 ring-2 outline-none' onClick={searchHandle}>
+                        <BsSearch className='text-2xl text-blue-500' />
                     </div>
                 </div>
                 <p className='text-teal-600 font-semibold'>{avail}</p>
                 {
-                    showBtn && (<button className='px-9 rounded-md ring-2 ring-teal-500 mt-3 transition-all ease-linear duration-100 text-xl py-3 outline-none hover:shadow-lg hover:bg-teal-400 hover:text-white' onClick={handleStatus}>Accept</button>)
+                    showBtn && (<button className='px-9  rounded-md ring-2 ring-teal-500 mt-3 transition-all ease-linear duration-100 text-xl py-3 outline-none hover:shadow-lg hover:bg-teal-400 hover:text-white' onClick={handleStatus}>Accept</button>)
                 }
             </div>
         </div>

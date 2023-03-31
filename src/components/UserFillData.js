@@ -6,6 +6,7 @@ import { auth } from '../firebase';
 import { getTracker } from '../api/userAPI';
 import { useDispatch } from 'react-redux';
 import { userNavigateActions } from '../redux/reducers/userNavigate';
+import BackBtn from './BackBtn';
 const UserFillData = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
@@ -83,6 +84,7 @@ const UserFillData = () => {
     return (
         <div className='pt-2 pb-4  sm:max-w-[85%]  md:max-w-[75%] lg:max-w-[80%] max-w-[90%] flex flex-col  mx-auto mt-10 min-h-[80vh] md:mb-0 mb-20'>
             <UserFillSteps />
+            <BackBtn />
             <div className='mt-4'>
                 <Outlet />
             </div>

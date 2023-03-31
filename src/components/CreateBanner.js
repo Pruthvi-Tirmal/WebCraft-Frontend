@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import heroSectionBanner from '../images/heroSection.png'
-import { Link as ScrollLink } from 'react-scroll'
+// import { Link as ScrollLink } from 'react-scroll'
 import { Link } from 'react-router-dom'
 const CreateBanner = () => {
     return (
@@ -23,7 +23,6 @@ const CreateBanner = () => {
                         </div>
                         <div className='space-x-4 space-y-4 '>
                             <Link to="/login" className='px-5 py-3 text-base bg-[#001D3E] text-white'>Create Your Website Now</Link>
-                            <ScrollLink to="plan" spy={true} smooth={true} offset={50} duration={500} className='px-5 py-4 cursor-pointer text-base hover:bg-[#001D3E] hover:text-white transition-all duration-100 ease-linear font-semibold'>Free To Use </ScrollLink>
                         </div>
                     </div>
                     <div>

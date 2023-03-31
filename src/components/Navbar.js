@@ -53,9 +53,8 @@ const Navbar = ({ flag = false }) => {
                                     {!user ? (pathCollection.map((item) => (
                                         <NavLink className='px-4 py-3 rounded-lg transition-all ease-in-out duration-100 hover:bg-gray-600 text-center mb-5' to={item.path} key={item.id}>{item.title}</NavLink>
                                     ))) :
-                                        (<NavLink className='px-4 py-3 rounded-lg transition-all ease-in-out duration-100 hover:bg-gray-600 text-center mb-5' to='/dashboard' >Open Dashboard</NavLink>)
+                                        (<NavLink className='px-4 py-3 rounded-lg transition-all ease-in-out duration-100 hover:bg-gray-600 text-center mb-5' to='/dashboard/home' >Open Dashboard</NavLink>)
                                     }
-
                                 </ul>
                             </div>
                         </div>

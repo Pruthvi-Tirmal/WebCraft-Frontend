@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion';
-import { getCred } from '../api/adminAPI';
+// import { getCred } from '../api/adminAPI';
+import logo from '../images/logo.png';
 import { toast, ToastContainer } from 'react-toastify';
-import { useNavigate, } from 'react-router-dom';
+import { Link, useNavigate, } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 const AdminLogin = () => {
+    const [error] = useAuthState(auth);
     const [login, setLogin] = useState({ email: "", password: "" });
     const navigate = useNavigate();
     const item = {
@@ -19,24 +24,28 @@ const AdminLogin = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const res = await getCred(login);
-            if (res.data) {
-                // localStorage
-                if (!window.localStorage.getItem("email")) {
-                    console.log("done");
-                    window.localStorage.setItem("email", res.data.email);
-                }
-                navigate("../admin");
-            } else {
-                toast.warning("Wrong Credentials");
-            }
-        } catch (err) {
-            console.log(err);
+        if (error) {
+            toast.error(error);
+        } else {
+            signInWithEmailAndPassword(auth, login.email, login.password).then(({ user }) => {
+                if (user.email !== "wcerbaft@admin.com" || user.uid !== "Hg35UcH1N4gjuZlhmMeuWdiMnDj1") { return; }
+                toast.success("Login");
+                setTimeout(() => {
+                    navigate("/admin");
+                }, 1000);
+                // console.log(user)
+            }).catch(err => {
+                toast.error(err.message);
+                // console.log(data);
+            })
         }
     }
     return (
         <div className='grid place-items-center'>
+            <Link to="/" className='mt-7 flex items-center gap-3 '>
+                <img src={logo} className="w-12" alt="logo" />
+                <h1 className='font-sans font-semibold text-2xl hidden sm:block'>WebCraft</h1>
+            </Link>
             <h1 className='text-4xl text-gray-700 text-center my-5'>Admin Login</h1>
             <motion.form variants={item} action="" className='flex w-[50%] flex-col gap-4' onSubmit={handleSubmit} >
                 <div className='flex flex-col gap-3'>
