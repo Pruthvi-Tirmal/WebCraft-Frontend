@@ -16,8 +16,8 @@ const GoogleButton = ({ title, variants, flag = true }) => {
     const handleGoogle = async () => {
         if (!user) {
             signInWithPopup(auth, provider).then(() => {
-                console.log(flag);
-                console.log(auth.currentUser.uid);
+                // console.log(flag);
+                // console.log(auth.currentUser.uid);
                 // Store in DB
                 storeInDB(auth.currentUser);
 

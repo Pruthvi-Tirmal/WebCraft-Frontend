@@ -14,8 +14,8 @@ const ContactSection = ({ theme, email, address }) => {
                 </div>
                 <div>
                     <div className='flex mb-4 justify-center items-center pb-1 border-b-4 border-gray-800 w-fit mx-auto gap-x-3'>
-                        <FaLocationArrow className='text-3xl text-gray-800' />
-                        <h1 className='font-semibold text-3xl text-gray-800 mt-3 mb-2 text-center  '>Location</h1>
+                        <FaLocationArrow className='text-2xl text-white' />
+                        <h1 className='font-semibold text-2xl text-white mt-3 mb-2 text-center  '>Location</h1>
                         {/* <Headline title="Location" /> */}
                     </div>
                     <p className='text-white text-center'>{address}</p>

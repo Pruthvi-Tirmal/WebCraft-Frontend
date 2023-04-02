@@ -30,6 +30,8 @@ const Template = ({ flag = true }) => {
     const dispatch = useDispatch();
     useEffect(() => {
         if (URL['*'] && URL['*'].includes("update/")) {
+            // console.log("update loading...");
+            setLoad(false);
             return;
         } else {
             const getAllDetails = async () => {
@@ -56,6 +58,7 @@ const Template = ({ flag = true }) => {
                         // user payment section
                         const resUserPayment = await getPaymentSection({ loggedUser });
                         dispatch(PaymentDataActions.setPaymentData(resUserPayment.data));
+                        // console.log("loading...");
                         setLoad(false);
                     } else {
                         navigate('/site-is-not-present');
