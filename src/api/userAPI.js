@@ -12,6 +12,7 @@ export const getHomeSection = async (card) => {
         return data;
     } catch (err) {
         console.log(err);
+        return err;
     }
 }
 
@@ -30,6 +31,7 @@ export const getAboutSection = async (card) => {
         return data;
     } catch (err) {
         console.log(err);
+        return err;
     }
 }
 // update the about section 
@@ -45,6 +47,7 @@ export const getProductsSection = async (card) => {
         return data;
     } catch (err) {
         console.log(err);
+        return err;
     }
 }
 //post for products section
@@ -68,6 +71,7 @@ export const getGallerySection = async (card) => {
         return data;
     } catch (err) {
         console.log(err);
+        return err;
     }
 }
 //delete for gallery section
@@ -85,6 +89,7 @@ export const getPaymentSection = async (card) => {
         return data;
     } catch (err) {
         console.log(err);
+        return err;
     }
 }
 // update for payment section
@@ -105,6 +110,7 @@ export const getTracker = async (card) => {
     }
     catch (err) {
         console.log(err);
+        return err;
     }
 }
 //delete for tracker section
@@ -134,6 +140,7 @@ export const getDomain = async (domain) => {
         return res;
     } catch (err) {
         console.log(err);
+        return err;
     }
 }
 

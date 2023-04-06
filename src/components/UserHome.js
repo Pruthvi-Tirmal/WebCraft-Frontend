@@ -18,14 +18,20 @@ const UserHome = () => {
             if (user) {
                 try {
                     const res = await getHomeSection({ loggedUser: user.email });
-                    if (res) {
+                    // console.log(res);
+                    if (res?.response?.status === 404) {
+                        toast.error("network error, please try after some time.");
+                        return;
+                    }
+                    if (res?.status === 200) {
                         setPresent(true);
                         setCardInfo(res.data);
                     }
                     setLoad(false);
                 } catch (err) {
-                    toast.error("network error, please try after some time.");
-                    console.log("error");
+                    console.log(err);
+                    // toast.error("network error, please try after some time.");
+                    // console.log("error");
                 }
             }
         }
